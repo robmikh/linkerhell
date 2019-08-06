@@ -15,7 +15,9 @@ if (WIN32)
     # wgpu introduces these dependencies
     target_link_libraries(cpp-exe PRIVATE d3d12.lib d3dcompiler.lib dxgi.lib)
 else()
-    # TODO: Linux and macOS
+    target_link_libraries(cpp-exe PRIVATE dl rt pthread)
+
+    target_link_libraries(cpp-exe PRIVATE xcb X11)
 endif()
 
 set(LIB_NAME ${CMAKE_STATIC_LIBRARY_PREFIX}rust_lib${CMAKE_STATIC_LIBRARY_SUFFIX})
