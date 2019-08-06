@@ -17,6 +17,10 @@ if (WIN32)
 else()
     add_compile_options(-std=c++17)
     add_compile_options(-pthread)
+
+    if (APPLE)
+        set(CMAKE_SHARED_LINKER_FLAGS ${CMAKE_SHARED_LINKER_FLAGS} -framework CoreGraphics -framework CoreFoundation -framework Metal)
+    endif()
 endif()
 
 add_subdirectory(cpp-exe)

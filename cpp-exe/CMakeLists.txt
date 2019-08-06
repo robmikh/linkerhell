@@ -15,9 +15,24 @@ if (WIN32)
     # wgpu introduces these dependencies
     target_link_libraries(cpp-exe PRIVATE d3d12.lib d3dcompiler.lib dxgi.lib)
 else()
-    target_link_libraries(cpp-exe PRIVATE dl rt pthread)
+    target_link_libraries(cpp-exe PRIVATE dl pthread)
+    
+    if (LINUX)
+        target_link_libraries(cpp-exe PRIVATE rt)
 
-    target_link_libraries(cpp-exe PRIVATE xcb X11)
+        target_link_libraries(cpp-exe PRIVATE xcb X11)
+    endif()
+
+    if (APPLE)
+        target_link_libraries(cpp-exe PRIVATE "-framework Security")
+        target_link_libraries(cpp-exe PRIVATE "-framework CoreGraphics")
+        target_link_libraries(cpp-exe PRIVATE "-framework Metal")
+        target_link_libraries(cpp-exe PRIVATE "-framework IOKit")
+        target_link_libraries(cpp-exe PRIVATE "-framework IOSurface")
+        target_link_libraries(cpp-exe PRIVATE "-framework QuartzCore")
+        target_link_libraries(cpp-exe PRIVATE "-framework CoreFoundation")
+        target_link_libraries(cpp-exe PRIVATE "-framework Cocoa")
+    endif()
 endif()
 
 set(LIB_NAME ${CMAKE_STATIC_LIBRARY_PREFIX}rust_lib${CMAKE_STATIC_LIBRARY_SUFFIX})
