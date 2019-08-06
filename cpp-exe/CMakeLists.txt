@@ -11,10 +11,14 @@ if (WIN32)
 
     # winit introduces these dependencies
     target_link_libraries(cpp-exe PRIVATE dwmapi.lib userenv.lib)
+
+    # wgpu introduces these dependencies
+    target_link_libraries(cpp-exe PRIVATE d3d12.lib d3dcompiler.lib dxgi.lib)
 else()
     # TODO: Linux and macOS
 endif()
 
-target_link_libraries(cpp-exe PUBLIC ${CMAKE_BINARY_DIR}/rust-lib/debug/rust_lib.lib)
+string(TOLOWER ${CMAKE_BUILD_TYPE} CARGO_BUILD_TYPE)
+target_link_libraries(cpp-exe PUBLIC ${CMAKE_BINARY_DIR}/rust-lib/${CARGO_BUILD_TYPE}/rust_lib.lib)
 
 install (TARGETS cpp-exe DESTINATION output)
