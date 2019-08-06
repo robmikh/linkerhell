@@ -18,7 +18,8 @@ else()
     # TODO: Linux and macOS
 endif()
 
+set(LIB_NAME ${CMAKE_STATIC_LIBRARY_PREFIX}rust_lib${CMAKE_STATIC_LIBRARY_SUFFIX})
 string(TOLOWER ${CMAKE_BUILD_TYPE} CARGO_BUILD_TYPE)
-target_link_libraries(cpp-exe PUBLIC ${CMAKE_BINARY_DIR}/rust-lib/${CARGO_BUILD_TYPE}/rust_lib.lib)
+target_link_libraries(cpp-exe PUBLIC ${CMAKE_BINARY_DIR}/rust-lib/${CARGO_BUILD_TYPE}/${LIB_NAME})
 
 install (TARGETS cpp-exe DESTINATION output)
