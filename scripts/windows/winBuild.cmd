@@ -9,7 +9,7 @@ set BUILDPATH=%REPO_ROOT_PATH%\_build\windows
 
 pushd %REPO_ROOT_PATH%\rust-lib
 set CARGO_TARGET_DIR=%BUILDPATH%\rust-lib
-cargo build
+cargo build --features dx12
 popd
 
 cmake . "-B%BUILDPATH%" -GNinja -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_INSTALL_PREFIX=%BUILDPATH%" 

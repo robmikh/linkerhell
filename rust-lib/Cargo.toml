@@ -10,6 +10,13 @@ crate-type = ["staticlib"]
 
 [dependencies]
 winit = "0.19.1"
+wgpu = { git = "https://github.com/gfx-rs/wgpu-rs.git", rev = "5dd361fc639e71af328504f9e27a08daf83d7633" }
 
 [build-dependencies]
 cbindgen = "0.9.0"
+
+[features]
+default = []
+metal = ["wgpu/metal"]
+dx12 = ["wgpu/dx12"]
+vulkan = ["wgpu/vulkan"]
