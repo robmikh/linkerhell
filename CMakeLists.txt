@@ -14,6 +14,10 @@ if (WIN32)
     add_compile_options(/std:c++17)
     add_compile_options(/EHsc)
     add_compile_options(/permissive-)
+    
+    # This will resolve the linker issue when building in Debug mode...
+    # ... but it's not that different from building in Release mode.
+    #add_compile_options(/MD)
 else()
     add_compile_options(-std=c++17)
     add_compile_options(-pthread)
