@@ -5,7 +5,7 @@ A project that reproduces a linking issue. The issue only seems to reproduce on 
 This is a minimal repro of the issue taken from a larger project. In short, `rust-lib` is a rust component that builds into a static lib. This lib is then linked into `cpp-exe`, a C++ executable, which consumes it.
 
 ## The Issue
-On Windows, `spirv-cross` seems to build for Release despite the rest of the project building for Debug. Not sure how that's happening ¯\\\_(ツ)_/¯. 
+~~On Windows, `spirv-cross` seems to build for Release despite the rest of the project building for Debug. Not sure how that's happening ¯\\\_(ツ)_/¯~~ It appears that Rust always uses the release CRT, so this shouldn't be unique to `spirv-cross`.
 
 The issue goes away when building the entire project for Release. Here's the error when building for Debug:
 ```
