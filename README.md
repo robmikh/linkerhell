@@ -1,5 +1,5 @@
 # linkerhell
-A project that reproduces a linking issue. The issue only seems to reproduce on Windows when doing a debug build.
+A project that reproduces a linking issue. The issue only seems to reproduce on Windows when doing a debug build. There is now an (imperfect) solution identified.
 
 ## The Project
 This is a minimal repro of the issue taken from a larger project. In short, `rust-lib` is a rust component that builds into a static lib. This lib is then linked into `cpp-exe`, a C++ executable, which consumes it.
@@ -55,5 +55,5 @@ cd linkerhell
 ./scripts/macOS/macOSBuild.sh
 ```
 
-## Help
-If you know how to release me from linker hell, please let me know. :slightly_smiling_face:
+## Solution
+It's an imperfect solution, but compiling with `/MD` resolved the issue on Windows.
