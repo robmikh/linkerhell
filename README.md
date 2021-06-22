@@ -1,4 +1,4 @@
-# linkerhell
+# linkerissuerepro
 A project that reproduces a linking issue. The issue only seems to reproduce on Windows when doing a debug build. There is now an (imperfect) solution identified.
 
 ## The Project
